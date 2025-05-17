@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+joblib
+scikit-learn
+pillow
+requests
+boto3
+python-multipart
+python-dotenv
+pandas
+pydantic
