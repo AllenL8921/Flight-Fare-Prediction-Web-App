@@ -14,7 +14,7 @@
 /coverage
 
 # next.js
-/.next/
+.next/
 /out/
 
 # production
@@ -45,12 +45,13 @@ next-env.d.ts
 __pycache__/
 *.pyc
 
+# Backend Files
 # Env files
 backend/.env
 
 # Model binaries (if you want to ignore them)
 backend/model/*.joblib
-
+backend/model/*.json
 # VSCode / IDE
 .vscode/
 

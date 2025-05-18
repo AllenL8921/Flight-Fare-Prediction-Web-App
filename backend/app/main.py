@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 from .model_utils import download_model, MODEL_LOCAL_PATH, FEATURE_NAMES_LOCAL_PATH
 from pydantic import BaseModel, Field
 
+
+import xgboost as xgb
 import joblib
 import os
 import io
@@ -53,8 +55,10 @@ class FlightFeatures(BaseModel):
 load_dotenv()
 download_model()
 
-model = joblib.load(MODEL_LOCAL_PATH)
 feature_names = joblib.load(FEATURE_NAMES_LOCAL_PATH)
+
+model = xgb.Booster()
+model.load_model(MODEL_LOCAL_PATH)
 
 app = FastAPI()
 
@@ -95,8 +99,12 @@ async def predict(features: FlightFeatures):
 
     try:
         input_df = preprocess_input(features)
-        prediction = model.predict(input_df)
-        return JSONResponse(content={"prediction": prediction[0]}, status_code=200)
+        dmatrix = xgb.DMatrix(input_df)
+        prediction = model.predict(dmatrix)
+
+        # Convert numpy float32 to Python float
+        pred_value = float(prediction[0])
+        return JSONResponse(content={"prediction": pred_value}, status_code=200)
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
 

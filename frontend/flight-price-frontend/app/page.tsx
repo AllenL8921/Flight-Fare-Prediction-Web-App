@@ -1,9 +1,12 @@
-import Image from "next/image";
+import Layout from './components/Layout';
+import FlightForm from './components/FlightForm';
 
 export default function Home() {
   return (
-    <div>
-      <h1>Flight Price Prediction</h1>
-    </div>
+    <Layout>
+      <div className="bg-white shadow rounded-lg">
+        <FlightForm />
+      </div>
+    </Layout>
   );
 }
