@@ -13,6 +13,7 @@ import {
     getDefaultFormData,
     getAirportCode
 } from '../utils/predictionUtils';
+import { getFlightPrice } from '../actions/getFlightPrice';
 
 export default function FlightForm() {
     const [formData, setFormData] = useState(getDefaultFormData());
@@ -26,29 +27,9 @@ export default function FlightForm() {
         setLoading(true);
         setError(null);
 
-        const validationError = validateFormData(formData);
-        if (validationError) {
-            setError(validationError);
-            setLoading(false);
-            return;
-        }
-
         try {
-            const data = extractPredictionData(formData);
-            const response = await fetch('http://localhost:8000/predict', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to get prediction');
-            }
-
-            const result = await response.json();
-            setPrediction(result.prediction);
+            const prediction = await getFlightPrice(formData);
+            setPrediction(prediction);
         } catch (err) {
             setError(err instanceof Error ? err.message : 'An error occurred');
         } finally {

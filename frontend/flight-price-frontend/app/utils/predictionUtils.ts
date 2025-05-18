@@ -8,7 +8,7 @@ interface FormData {
     arrival: string;
     duration: number;
     days_left: number;
-}
+} export type { FormData };
 
 interface PredictionData {
     stops: number;
@@ -16,7 +16,7 @@ interface PredictionData {
     duration: number;
     days_left: number;
     [key: string]: number;
-}
+} export type { PredictionData };
 
 interface FlightInfo {
     source: string;
@@ -27,7 +27,7 @@ interface FlightInfo {
     stops: number;
     departure: string;
     arrival: string;
-}
+} export type { FlightInfo };
 
 export const AIRLINES = ["AirAsia", "Air_India", "GO_FIRST", "Indigo", "SpiceJet", "Vistara"] as const;
 export const CITIES = ["Bangalore", "Chennai", "Delhi", "Hyderabad", "Kolkata", "Mumbai"] as const;
