@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: flight-fare-backend
+    env: docker
+    dockerfilePath: backend/dockerfile
+    branch: main
+    autoDeploy: true
+    envVars:
+      - key: S3_BUCKET_NAME
+        fromSecret: S3_BUCKET_NAME
+      - key: AWS_ACCESS_KEY_ID
+        fromSecret: AWS_ACCESS_KEY_ID
+      - key: AWS_SECRET_ACCESS_KEY
+        fromSecret: AWS_SECRET_ACCESS_KEY
+      - key: AWS_DEFAULT_REGION
+        fromSecret: AWS_DEFAULT_REGION
+    plan: free
+
+  - type: web
+    name: flight-fare-frontend
+    env: docker
+    dockerfilePath: frontend/dockerfile
+    branch: main
+    autoDeploy: true
+    envVars:
+      - key: NEXT_PUBLIC_BACKEND_URL
+        value: 'http://flight-fare-backend.onrender.com'
+    plan: free
