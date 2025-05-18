@@ -6,8 +6,6 @@ import {
     FormData
 } from "../utils/predictionUtils";
 
-import FlightFormData from "../types/FlightFormData";
-
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export async function getFlightPrice(formData: FormData) {
