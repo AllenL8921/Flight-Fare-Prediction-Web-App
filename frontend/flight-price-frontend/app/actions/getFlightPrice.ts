@@ -6,7 +6,7 @@ import {
     FormData
 } from "../utils/predictionUtils";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function getFlightPrice(formData: FormData) {
     const validationError = validateFormData(formData);

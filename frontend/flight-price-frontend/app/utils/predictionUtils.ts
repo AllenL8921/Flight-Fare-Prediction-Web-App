@@ -94,6 +94,11 @@ export function extractPredictionData(formData: FormData): PredictionData {
         days_left: formData.days_left
     };
 
+    /**
+     * If the airline is the selected airline, then the value is 1, otherwise 0.
+     * Repeat this for all features.
+     */
+
     // Add airline features
     AIRLINES.forEach(airline => {
         data[`airline_${airline}`] = (airline === formData.airline) ? 1 : 0;

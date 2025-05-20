@@ -170,6 +170,23 @@ export default function FlightForm() {
                         </select>
                     </div>
 
+                    <div>
+                        <label htmlFor="days_left" className="block text-sm font-semibold text-white mb-1">Days Until Flight:</label>
+                        <input
+                            type="number"
+                            id="days_left"
+                            name="days_left"
+                            min="0"
+                            value={formData.days_left}
+                            onChange={(e) => setFormData(prev => ({
+                                ...prev,
+                                days_left: Math.max(0, parseInt(e.target.value) || 0)
+                            }))}
+                            className="w-full p-2 rounded-lg bg-white/25 text-gray-800 font-semibold focus:bg-white/45 focus:shadow-lg focus:shadow-purple-500/50 outline-none"
+                            placeholder="Enter number of days"
+                        />
+                    </div>
+
                     <button
                         type="submit"
                         disabled={loading}
