@@ -102,7 +102,6 @@ async def predict(features: FlightFeatures):
         dmatrix = xgb.DMatrix(input_df)
         prediction = model.predict(dmatrix)
 
-        # Convert numpy float32 to Python float
         pred_value = float(prediction[0])
         return JSONResponse(content={"prediction": pred_value}, status_code=200)
     except Exception as e:

@@ -171,6 +171,23 @@ export default function FlightForm() {
                     </div>
 
                     <div>
+                        <label htmlFor="duration" className="block text-sm font-semibold text-white mb-1">Flight Duration (minutes):</label>
+                        <input
+                            type="number"
+                            id="duration"
+                            name="duration"
+                            min="1"
+                            value={formData.duration}
+                            onChange={(e) => setFormData(prev => ({
+                                ...prev,
+                                duration: Math.max(1, parseInt(e.target.value) || 1)
+                            }))}
+                            className="w-full p-2 rounded-lg bg-white/25 text-gray-800 font-semibold focus:bg-white/45 focus:shadow-lg focus:shadow-purple-500/50 outline-none"
+                            placeholder="Enter flight duration in minutes"
+                        />
+                    </div>
+
+                    <div>
                         <label htmlFor="days_left" className="block text-sm font-semibold text-white mb-1">Days Until Flight:</label>
                         <input
                             type="number"
